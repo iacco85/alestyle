@@ -2,7 +2,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 // Assicurati che il nome del file corrisponda a quello nella tua cartella assets
 import logo from './assets/LogoAleStyle.jpg'
-// Importiamo la nuova immagine per la hero (assicurati che l'estensione sia corretta, es. .jpg o .png)
 
 // Stato per il cursore personalizzato
 const cursorX = ref(0)
@@ -39,11 +38,32 @@ onUnmounted(() => {
 })
 
 // Dati Mock per le recensioni
-// Dati Mock per le recensioni
 const reviews = [
   { id: 1, author: 'Laura B.', text: 'Professionalità e cortesia. Il miglior taglio che abbia mai avuto!', rating: 5 },
   { id: 2, author: 'Marco G.', text: 'Ambiente rilassante e staff preparatissimo. Consigliato.', rating: 5 },
   { id: 3, author: 'Sofia R.', text: 'Prodotti di alta qualità e grande attenzione al cliente.', rating: 5 },
+]
+
+// Dati per i Servizi
+const serviceList = [
+  { 
+    title: 'Taglio & Styling', 
+    description: 'Esprimi la tua unicità con un taglio studiato per valorizzare i tuoi lineamenti.', 
+    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1000&auto=format&fit=crop',
+    link: '#' 
+  },
+  { 
+    title: 'Colorazione', 
+    description: 'Nuance vibranti e tecniche innovative per dare luce e profondità ai tuoi capelli.', 
+    image: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=1000&auto=format&fit=crop',
+    link: '#' 
+  },
+  { 
+    title: 'Trattamenti', 
+    description: 'Rituali di benessere per rigenerare la fibra capillare e rilassare la mente.', 
+    image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1000&auto=format&fit=crop',
+    link: '#' 
+  }
 ]
 
 // Stato per il menu mobile
@@ -136,7 +156,6 @@ const toggleMenu = () => {
     </section>
 
     <!-- Sezione Chi Siamo -->
-    <!-- Sezione Chi Siamo -->
     <section id="chi-siamo" class="about section-padding">
       <div class="content-wrapper">
         <h2 class="section-title">La Nostra <span class="highlight">Filosofia</span></h2>
@@ -148,13 +167,20 @@ const toggleMenu = () => {
       </div>
     </section>
 
-<!-- Sezione Servizi (ex Showcase) -->
-    <section id="servizi" class="showcase section-padding">
+    <!-- Sezione Servizi -->
+    <section id="servizi" class="services-section section-padding">
       <h2 class="section-title center">I Nostri <span class="highlight">Servizi</span></h2>
-      <div class="card" v-for="i in 3" :key="i" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-        <div class="card-number">0{{ i }}</div>
-        <h2>Servizio {{ i }}</h2>
-        <p>Taglio, colore e styling su misura per esaltare la tua personalità.</p>
+      <div class="services-grid">
+        <div class="service-card" v-for="service in serviceList" :key="service.title" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
+          <div class="service-image-wrapper">
+            <img :src="service.image" :alt="service.title" class="service-img">
+          </div>
+          <div class="service-content">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+            <a :href="service.link" class="service-link-btn">Scopri di più</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -216,12 +242,17 @@ const toggleMenu = () => {
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
 /* Reset di base */
 :root {
   --bg-color: #000000;
   --text-color: #ffffff;
   --accent-color: #D4AF37; /* Oro elegante */
+  --accent-gradient: linear-gradient(135deg, #D4AF37 0%, #F2D06B 50%, #D4AF37 100%);
   --cursor-size: 10px;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
 }
 
 *, *::before, *::after {
@@ -235,7 +266,7 @@ body {
   padding: 0;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: var(--font-body);
   overflow-x: hidden;
   cursor: none;
   display: block !important;
@@ -391,6 +422,7 @@ nav a:hover {
   /* Typography & Layout Adjustments for Mobile */
   .section-title {
     font-size: 2rem !important; /* Titoli più piccoli */
+    margin-bottom: 1.5rem !important;
   }
 
   .hero-logo {
@@ -399,7 +431,8 @@ nav a:hover {
 
   .hero-image-card {
     width: 100% !important;
-    height: 250px !important;
+    height: 300px !important; /* Un po' più alte per impatto */
+    margin-bottom: 10px;
   }
 
   .description {
@@ -420,6 +453,12 @@ nav a:hover {
     height: auto !important;
     min-height: 350px;
   }
+  
+  .hero {
+    padding-top: 80px !important;
+    height: auto !important; /* Permette alla hero di crescere */
+    min-height: 100vh; /* Assicura che copra almeno lo schermo */
+  }
 }
 
 /* --- Hero Section --- */
@@ -427,15 +466,19 @@ nav a:hover {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Distribuisce lo spazio verticalmente */
   align-items: center;
   position: relative;
-  padding-top: 5vh; 
+  padding-top: 100px; /* Spazio per l'header fisso */
+  padding-bottom: 100px; /* Spazio extra in basso per l'indicatore di scorrimento */
   background-color: var(--bg-color);
 }
 
 .hero-content {
+  flex: 1; /* Occupa lo spazio disponibile */
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Centra verticalmente il contenuto */
   align-items: center;
   text-align: center;
   width: 100%;
@@ -449,7 +492,7 @@ nav a:hover {
   max-width: 350px; /* Ridotto come richiesto */
   width: 100%;
   height: auto;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeInLogo 2s ease-out forwards;
 }
@@ -463,7 +506,7 @@ nav a:hover {
 .hero-images {
   display: flex;
   gap: 20px;
-  margin: 0.5rem 0;h
+  margin: 0.5rem 0;
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
@@ -477,6 +520,7 @@ nav a:hover {
   opacity: 0;
   animation: fadeInUp 1s ease-out forwards;
   border: 1px solid #333;
+  transition: border-color 0.3s ease;
 }
 
 .hero-image-card.fade-in-delay-1 { animation-delay: 0.5s; }
@@ -594,9 +638,13 @@ nav a:hover {
 }
 
 .scroll-indicator {
-  position: absolute;
-  bottom: 30px;
+position: absolute; /* Torniamo ad absolute per fissarlo in basso */
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
+  flex-direction: column;
+  align-items: center;  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
@@ -606,6 +654,7 @@ nav a:hover {
   text-transform: uppercase;
   animation: bounce 2s infinite;
   z-index: 20;
+  text-align: center;
 }
 
 @keyframes bounce {
@@ -662,22 +711,6 @@ nav a:hover {
   text-align: center;
 }
 
-/* --- Showcase Section --- */
-.showcase {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  background: #000000;
-  flex-direction: row; /* Reset flex direction for cards */
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  padding: 100px 5vw;
-  background: #000000;
-  flex-wrap: wrap;
-}
-
 /* --- Reviews Section --- */
 .reviews {
   background-color: #0a0a0a;
@@ -731,55 +764,87 @@ nav a:hover {
 .info-item h3 { color: var(--accent-color); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; }
 .info-item p { color: #ccc; line-height: 1.6; }
 
-/* --- Showcase Section --- */
-.showcase {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  padding: 100px 5vw;
+/* --- Services Section --- */
+.services-section {
   background: #000000;
   flex-wrap: wrap;
 }
 
-.card {
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.service-card {
   background: #0a0a0a;
-  padding: 40px;
-  width: 300px;
-  height: 400px;
+  border: 1px solid #222;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.service-image-wrapper {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.service-card:hover .service-img {
+  transform: scale(1.1);
+}
+
+.service-content {
+  padding: 30px;
+  text-align: center;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.3s;
-  border: 1px solid #222;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  background: #111;
-  border-color: var(--accent-color);
-}
-
-.card-number {
-  font-size: 3rem;
-  font-weight: 900;
-  color: #222;
-  transition: color 0.3s;
-}
-
-.card:hover .card-number {
+.service-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 15px;
   color: var(--accent-color);
 }
-
-.card h2 {
-  font-size: 1.5rem;
-  margin: 0;
+.service-content p {
+  color: #ccc;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+.service-link-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border: 1px solid var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  align-self: center;
 }
 
-.card p {
-  color: #666;
-  line-height: 1.6;
-  font-size: 0.9rem;
+.service-link-btn:hover {
+  background: var(--accent-color);
+  color: #000;
 }
 </style>
