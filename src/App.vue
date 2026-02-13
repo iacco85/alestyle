@@ -8,6 +8,12 @@ import './style.css'
 const cursorX = ref(0)
 const cursorY = ref(0)
 const isHovering = ref(false)
+const scrollY = ref(0)
+
+// Gestione Parallasse
+const handleScroll = () => {
+  scrollY.value = window.scrollY
+}
 
 // Aggiorna la posizione del cursore
 const updateCursor = (e: MouseEvent) => {
@@ -18,6 +24,7 @@ const updateCursor = (e: MouseEvent) => {
 // Aggiungi/Rimuovi listener
 onMounted(() => {
   window.addEventListener('mousemove', updateCursor)
+  window.addEventListener('scroll', handleScroll)
   
    
   // Observer per animazioni allo scroll
@@ -36,6 +43,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('mousemove', updateCursor)
+  window.removeEventListener('scroll', handleScroll)
 })
 
 // Dati Mock per le recensioni
@@ -77,6 +85,26 @@ const toggleMenu = () => {
 <template>
   <!-- Menu di Navigazione -->
   <header class="site-header">
+    <div class="header-logo-container">
+      <a href="#home"><img :src="logo" alt="ALE STYLE" class="header-logo" /></a>
+    </div>
+
+    <!-- Icone Social Header (Desktop) -->
+    <div class="header-socials">
+      <a href="https://www.facebook.com" target="_blank" class="social-link-header" aria-label="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" class="social-link-header" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+      <a href="mailto:info@alestyle.it" class="social-link-header" aria-label="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </a>
+      <a href="https://wa.me/390123456789" target="_blank" class="social-link-header" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+      </a>
+    </div>
+
     <div class="menu-toggle" @click="toggleMenu" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
       <div class="hamburger" :class="{ 'open': isMenuOpen }">
         <span></span>
@@ -85,9 +113,25 @@ const toggleMenu = () => {
       </div>
     </div>
     <nav :class="{ 'open': isMenuOpen }">
+      <!-- Icone Social Menu Mobile -->
+      <div class="mobile-socials">
+        <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" class="social-link" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="mailto:info@alestyle.it" class="social-link" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a>
+        <a href="https://wa.me/390123456789" target="_blank" class="social-link" aria-label="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </a>
+      </div>
+
       <ul>
         <li><a href="#home" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Home</a></li>
-        <li><a href="#chi-siamo" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Chi Siamo</a></li>
+        <li><a href="#chi-sono" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Chi sono</a></li>
         <li><a href="#servizi" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Servizi</a></li>
         <li><a href="#recensioni" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Dicono di me</a></li>
         <li><a href="#contatti" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Contatti</a></li>
@@ -110,38 +154,16 @@ const toggleMenu = () => {
   <main>
     <!-- Sezione Hero -->
     <section class="hero" id="home">
+      <div class="hero-bg" :style="{ transform: `translateY(${scrollY * 0.5}px)` }">
+        <img src="./assets/home_negozio.webp" alt="Ale Style Mood Uomo Donna" />
+        <div class="overlay"></div>
+      </div>
+
       <div class="hero-content">
         <!-- Logo come elemento principale della Hero (al posto della foto) -->
-        <img :src="logo" alt="ALE STYLE" class="logo hero-logo fade-in" @mouseenter="isHovering = true" @mouseleave="isHovering = false" />
-
-        <div class="hero-images">
-          <div class="hero-image-card fade-in-delay-1" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1780&auto=format&fit=crop" alt="Donna" />
-            <div class="image-label">Donna</div>
-          </div>
-          <div class="hero-image-card fade-in-delay-2" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-            <img src="https://images.unsplash.com/photo-1593702295094-aea22597af65?q=80&w=2070&auto=format&fit=crop" alt="Uomo" />
-            <div class="image-label">Uomo</div>
-          </div>
-        </div>
+        <h2 class="subtitle">Parrucchiere Uomo & Donna</h2>
 
         <p class="description">Ridefiniamo l'eleganza del tuo look.</p>
-        
-        <!-- Icone Social Hero -->
-        <div class="social-icons hero-socials" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-          <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-          </a>
-          <a href="https://www.instagram.com" target="_blank" class="social-link" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
-          <a href="mailto:info@alestyle.it" class="social-link" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          </a>
-          <a href="https://wa.me/390123456789" target="_blank" class="social-link" aria-label="WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-          </a>
-        </div>
 
         <div class="actions">
           <button class="cta-btn" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
@@ -156,10 +178,10 @@ const toggleMenu = () => {
       </div>
     </section>
 
-    <!-- Sezione Chi Siamo -->
-    <section id="chi-siamo" class="about section-padding">
+    <!-- Sezione Chi sono -->
+    <section id="chi-sono" class="about section-padding">
       <div class="content-wrapper">
-        <h2 class="section-title">La Nostra <span class="highlight">Filosofia</span></h2>
+        <h2 class="section-title">La MIA <span class="highlight">Filosofia</span></h2>
         <p class="section-text">
           Da Ale Style, non ci limitiamo a tagliare i capelli. Creiamo opere d'arte che riflettono la tua personalità. 
           In un ambiente esclusivo e rilassante, ci prendiamo cura della tua immagine con passione e dedizione, 
@@ -170,7 +192,7 @@ const toggleMenu = () => {
 
     <!-- Sezione Servizi -->
     <section id="servizi" class="services-section section-padding">
-      <h2 class="section-title center">I Nostri <span class="highlight">Servizi</span></h2>
+      <h2 class="section-title center">I Miei <span class="highlight">Servizi</span></h2>
       <div class="services-grid">
         <div class="service-card" v-for="service in serviceList" :key="service.title" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
           <div class="service-image-wrapper">
@@ -187,7 +209,7 @@ const toggleMenu = () => {
 
     <!-- Sezione Dicono di Noi -->
     <section id="recensioni" class="reviews section-padding">
-      <h2 class="section-title center">Dicono di <span class="highlight">Noi</span></h2>
+      <h2 class="section-title center">Dicono di <span class="highlight">ME</span></h2>
       <div class="reviews-grid">
         <div class="review-card" v-for="review in reviews" :key="review.id" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
           <div class="stars">★★★★★</div>
@@ -205,7 +227,7 @@ const toggleMenu = () => {
     <!-- Sezione Contatti -->
     <section id="contatti" class="contact section-padding">
       <div class="contact-content">
-        <h2 class="section-title">Vieni a <span class="highlight">Trovarci</span></h2>
+        <h2 class="section-title">Vieni a <span class="highlight">Trovarmi</span></h2>
         <div class="info-grid">
           <div class="info-item">
             <h3>Indirizzo</h3>
