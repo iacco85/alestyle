@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { socialUrls } from '../data/siteData.ts'
+import { socialUrls } from '../data/contact'
 
 withDefaults(defineProps<{
   linkClass?: string

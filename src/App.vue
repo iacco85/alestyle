@@ -1,16 +1,43 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 // Assicurati che il nome del file corrisponda a quello nella tua cartella assets
 import logo from './assets/LogoAleStyle.jpg'
 import './style.css'
 import SocialLinks from './components/SocialLinks.vue'
-import { reviews, serviceList, productList, contactInfo } from './data/siteData'
+import DetailView from './components/DetailView.vue'
+import { serviceList, type Service } from './data/services'
+import { productList, type Product } from './data/products'
+import { reviews } from './data/reviews'
+import { contactInfo } from './data/contact'
 
 // Stato per il cursore personalizzato
 const cursorX = ref(0)
 const cursorY = ref(0)
 const isHovering = ref(false)
 const scrollY = ref(0)
+
+// Stato per la pagina di dettaglio (Generico per Servizi e Prodotti)
+const selectedItem = ref<Service | Product | null>(null)
+const backText = ref('')
+const returnSectionId = ref('')
+
+const openDetail = (item: Service | Product, sectionId: string, backLabel: string) => {
+  selectedItem.value = item
+  returnSectionId.value = sectionId
+  backText.value = backLabel
+  window.scrollTo(0, 0)
+  isHovering.value = false
+}
+
+const closeDetail = () => {
+  selectedItem.value = null
+  nextTick(() => {
+    const element = document.getElementById(returnSectionId.value)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  })
+}
 
 // Gestione Parallasse
 const handleScroll = () => {
@@ -100,8 +127,19 @@ const toggleMenu = () => {
   ></div>
 
   <main>
+    <!-- Pagina Dettaglio Servizio -->
+    <DetailView 
+      v-if="selectedItem"
+      :title="selectedItem.title"
+      :description="selectedItem.description"
+      :gallery="selectedItem.gallery"
+      :back-text="backText"
+      @close="closeDetail"
+      @hover="(val) => isHovering = val"
+    />
+
     <!-- Sezione Hero -->
-    <section class="hero" id="home">
+    <section v-show="!selectedItem" class="hero" id="home">
       <div class="hero-bg" :style="{ transform: `translateY(${scrollY * 0.5}px)` }">
         <img src="./assets/home_negozio.webp" alt="Ale Style Mood Uomo Donna" />
         <div class="overlay"></div>
@@ -127,7 +165,7 @@ const toggleMenu = () => {
     </section>
 
     <!-- Sezione Chi sono -->
-    <section id="chi-sono" class="about section-padding">
+    <section v-show="!selectedItem" id="chi-sono" class="about section-padding">
       <div class="content-wrapper">
         <h2 class="section-title">La MIA <span class="highlight">Filosofia</span></h2>
         
@@ -159,7 +197,7 @@ const toggleMenu = () => {
     </section>
 
     <!-- Sezione Servizi -->
-    <section id="servizi" class="services-section section-padding">
+    <section v-show="!selectedItem" id="servizi" class="services-section section-padding">
       <h2 class="section-title center">I Miei <span class="highlight">Servizi</span></h2>
       <div class="services-grid">
         <div class="service-card" v-for="service in serviceList" :key="service.title" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
@@ -169,14 +207,14 @@ const toggleMenu = () => {
           <div class="service-content">
             <h3>{{ service.title }}</h3>
             <p>{{ service.description }}</p>
-            <a :href="service.link" class="service-link-btn">Scopri di più</a>
+            <button @click="openDetail(service, 'servizi', 'Torna ai servizi')" class="service-link-btn">Scopri di più</button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Sezione Prodotti -->
-    <section id="prodotti" class="services-section section-padding">
+    <section v-show="!selectedItem" id="prodotti" class="services-section section-padding">
       <h2 class="section-title center">I Nostri <span class="highlight">Prodotti</span></h2>
       <div class="services-grid">
         <div class="service-card" v-for="product in productList" :key="product.title" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
@@ -186,14 +224,14 @@ const toggleMenu = () => {
           <div class="service-content">
             <h3>{{ product.title }}</h3>
             <p>{{ product.description }}</p>
-            <a :href="product.link" class="service-link-btn">Scopri di più</a>
+            <button @click="openDetail(product, 'prodotti', 'Torna ai prodotti')" class="service-link-btn">Scopri di più</button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Sezione Dicono di Noi -->
-    <section id="recensioni" class="reviews section-padding">
+    <section v-show="!selectedItem" id="recensioni" class="reviews section-padding">
       <h2 class="section-title center">Dicono di <span class="highlight">ME</span></h2>
       <div class="reviews-grid">
         <div class="review-card" v-for="review in reviews" :key="review.id" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
@@ -210,7 +248,7 @@ const toggleMenu = () => {
     </section>
 
     <!-- Sezione Contatti -->
-    <section id="contatti" class="contact section-padding">
+    <section v-show="!selectedItem" id="contatti" class="contact section-padding">
       <div class="contact-content">
         <h2 class="section-title">Vieni a <span class="highlight">Trovarmi</span></h2>
         <div class="info-grid">

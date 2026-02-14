@@ -15,7 +15,10 @@
   box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+html { 
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* Compensazione header fisso desktop */
+}
 
 body {
   margin: 0;
@@ -146,6 +149,10 @@ nav a:hover {
 
 /* Mobile Menu Styles */
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: 90px; /* Compensazione header fisso mobile */
+  }
+
   .header-socials {
     display: none; /* Nascondi social header su mobile */
   }
@@ -663,6 +670,7 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 2px;
+  background: transparent;
   transition: all 0.3s ease;
   align-self: center;
 }
@@ -670,4 +678,66 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
 .service-link-btn:hover {
   background: var(--accent-color);
   color: #000;
+}
+
+/* --- Service Detail Page --- */
+.service-detail-page {
+  padding-top: 120px; /* Spazio per l'header */
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  animation: fadeIn 0.5s ease-out;
+  opacity: 1;
+  transform: none;
+}
+
+.detail-header {
+  max-width: 1200px;
+  margin: 0 auto 2rem auto;
+  padding: 0 20px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 1rem;
+  cursor: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 0;
+  transition: transform 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateX(-5px);
+}
+
+.detail-description {
+  margin-bottom: 4rem;
+  font-size: 1.3rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.02);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
