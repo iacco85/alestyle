@@ -2,7 +2,7 @@
 defineProps<{
   title: string
   description: string
-  gallery: string[]
+  gallery: { image: string, description: string }[]
   backText: string
 }>()
 
@@ -29,8 +29,9 @@ const emit = defineEmits<{
     <p class="section-text detail-description">{{ description }}</p>
     
     <div class="gallery-grid">
-      <div v-for="(img, index) in gallery" :key="index" class="gallery-item">
-        <img :src="img" :alt="`${title} ${index + 1}`" class="gallery-img">
+      <div v-for="(item, index) in gallery" :key="index" class="gallery-item">
+        <img :src="item.image" :alt="`${title} ${index + 1}`" class="gallery-img">
+        <div class="gallery-desc">{{ item.description }}</div>
       </div>
     </div>
   </div>

@@ -43,15 +43,15 @@ body {
 /* --- Cursore --- */
 .cursor {
   position: fixed;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
-  background: white;
-  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
   pointer-events: none;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
+  transform: translate(-50%, -50%) rotate(-30deg);
   z-index: 9999;
-  transition: width 0.3s, height 0.3s;
+  transition: width 0.3s, height 0.3s, transform 0.1s;
 }
 
 .cursor-follower {
@@ -151,6 +151,14 @@ nav a:hover {
 @media (max-width: 768px) {
   html {
     scroll-padding-top: 90px; /* Compensazione header fisso mobile */
+  }
+
+  body {
+    cursor: auto; /* Ripristina cursore di sistema su mobile */
+  }
+
+  .cursor, .cursor-follower {
+    display: none; /* Nascondi cursore personalizzato su mobile */
   }
 
   .header-socials {
@@ -257,7 +265,7 @@ nav a:hover {
     padding: 60px 20px !important; /* Meno padding laterale */
   }
 
-  .reviews-grid, .info-grid {
+  .reviews-grid, .info-grid, .gallery-grid {
     grid-template-columns: 1fr !important; /* Una colonna su mobile */
   }
 
@@ -271,6 +279,10 @@ nav a:hover {
     padding-top: 80px !important;
     height: auto !important; /* Permette alla hero di crescere */
     min-height: 100vh; /* Assicura che copra almeno lo schermo */
+  }
+
+  .service-detail-page {
+    padding-top: 110px !important; /* Evita che l'header copra il contenuto su mobile */
   }
 }
 
@@ -725,16 +737,33 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
   margin: 0 auto;
 }
 
-.gallery-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
+.gallery-item {
+  background: #111;
+  border: 1px solid #222;
   border-radius: 4px;
-  transition: transform 0.3s ease;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.gallery-img:hover {
-  transform: scale(1.02);
+.gallery-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+}
+
+.gallery-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-desc {
+  padding: 20px;
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  background-color: #111;
 }
 
 @keyframes fadeIn {

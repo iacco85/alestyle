@@ -5,9 +5,9 @@ import logo from './assets/LogoAleStyle.jpg'
 import './style.css'
 import SocialLinks from './components/SocialLinks.vue'
 import DetailView from './components/DetailView.vue'
+import GoogleReviews from './components/GoogleReviews.vue'
 import { serviceList, type Service } from './data/services'
 import { productList, type Product } from './data/products'
-import { reviews } from './data/reviews'
 import { contactInfo } from './data/contact'
 
 // Stato per il cursore personalizzato
@@ -233,18 +233,9 @@ const toggleMenu = () => {
     <!-- Sezione Dicono di Noi -->
     <section v-show="!selectedItem" id="recensioni" class="reviews section-padding">
       <h2 class="section-title center">Dicono di <span class="highlight">ME</span></h2>
-      <div class="reviews-grid">
-        <div class="review-card" v-for="review in reviews" :key="review.id" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"{{ review.text }}"</p>
-          <p class="review-author">- {{ review.author }}</p>
-        </div>
-      </div>
-      <div class="google-link-container">
-        <a href="https://www.google.com/maps" target="_blank" class="cta-btn google-btn" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-          Leggi le recensioni su Google
-        </a>
-      </div>
+      
+      <GoogleReviews @mouseenter="isHovering = true" @mouseleave="isHovering = false" />
+      
     </section>
 
     <!-- Sezione Contatti -->
