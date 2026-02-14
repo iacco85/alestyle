@@ -4,7 +4,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import logo from './assets/LogoAleStyle.jpg'
 import './style.css'
 import SocialLinks from './components/SocialLinks.vue'
-import { reviews, serviceList, contactInfo } from './data/siteData'
+import { reviews, serviceList, productList, contactInfo } from './data/siteData'
 
 // Stato per il cursore personalizzato
 const cursorX = ref(0)
@@ -80,6 +80,7 @@ const toggleMenu = () => {
         <li><a href="#home" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Home</a></li>
         <li><a href="#chi-sono" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Chi sono</a></li>
         <li><a href="#servizi" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Servizi</a></li>
+        <li><a href="#prodotti" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Prodotti</a></li>
         <li><a href="#recensioni" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Dicono di me</a></li>
         <li><a href="#contatti" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Contatti</a></li>
       </ul>
@@ -108,9 +109,9 @@ const toggleMenu = () => {
 
       <div class="hero-content">
         <!-- Logo come elemento principale della Hero (al posto della foto) -->
-        <h2 class="subtitle">Hair Stylist & Image Creator</h2>
+        <h2 class="subtitle">Capelli che raccontano chi sei</h2>
 
-        <p class="description">La tua unicità è la mia ispirazione. Creo il look perfetto per raccontare chi sei.</p>
+        <p class="description">Esperienza, creatività e qualità professionale per valorizzare la tua unicità.</p>
 
         <div class="actions">
           <button class="cta-btn" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
@@ -129,10 +130,30 @@ const toggleMenu = () => {
     <section id="chi-sono" class="about section-padding">
       <div class="content-wrapper">
         <h2 class="section-title">La MIA <span class="highlight">Filosofia</span></h2>
+        
+        <h3 class="about-subtitle">Dal 2005, la bellezza dei tuoi capelli è la mia missione</h3>
         <p class="section-text">
-          Da Ale Style, non ci limitiamo a tagliare i capelli. Creiamo opere d'arte che riflettono la tua personalità. 
-          In un ambiente esclusivo e rilassante, ci prendiamo cura della tua immagine con passione e dedizione, 
-          utilizzando solo i migliori prodotti per garantire salute e bellezza ai tuoi capelli.
+          Mi chiamo Alessandra e da sempre vivo il mondo dell’hairstyling con passione autentica. Ho iniziato a soli 14 anni nei saloni di Rimini, trasformando giorno dopo giorno la mia vocazione in competenza, esperienza e visione.
+        </p>
+        <p class="section-text">
+          Nel 2005 ho dato vita a Ale’s Style: uno spazio intimo e accogliente dove ogni persona viene seguita direttamente da me, con attenzione, ascolto e cura su misura.
+        </p>
+
+        <h3 class="about-subtitle">Un servizio personale, pensato per te</h3>
+        <p class="section-text">
+          Ogni trattamento nasce dall’ascolto e dallo studio della tua immagine, dei tuoi desideri e delle caratteristiche dei tuoi capelli. Credo in una bellezza che valorizza, che rispetta e che racconta chi sei davvero.
+          <br><br>
+          Nel mio lavoro unisco tecnica, creatività e aggiornamento costante per offrirti risultati naturali, armoniosi e sempre attuali.
+        </p>
+
+        <h3 class="about-subtitle">Qualità senza compromessi</h3>
+        <p class="section-text">
+          Per garantire risultati eccellenti utilizzo esclusivamente prodotti professionali selezionati, come quelli firmati Framesi, marchio italiano sinonimo di innovazione, ricerca e alta performance nel mondo dell’hairstyling.
+        </p>
+
+        <h3 class="about-subtitle">Più di un cambio look: un’esperienza</h3>
+        <p class="section-text">
+          Ale’s Style non è solo un salone, ma uno spazio dove concederti tempo, cura e attenzione autentica. Qui ogni dettaglio è pensato per farti sentire a tuo agio e per esaltare al meglio la tua unicità.
         </p>
       </div>
     </section>
@@ -149,6 +170,23 @@ const toggleMenu = () => {
             <h3>{{ service.title }}</h3>
             <p>{{ service.description }}</p>
             <a :href="service.link" class="service-link-btn">Scopri di più</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione Prodotti -->
+    <section id="prodotti" class="services-section section-padding">
+      <h2 class="section-title center">I Nostri <span class="highlight">Prodotti</span></h2>
+      <div class="services-grid">
+        <div class="service-card" v-for="product in productList" :key="product.title" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
+          <div class="service-image-wrapper">
+            <img :src="product.image" :alt="product.title" class="service-img">
+          </div>
+          <div class="service-content">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.description }}</p>
+            <a :href="product.link" class="service-link-btn">Scopri di più</a>
           </div>
         </div>
       </div>

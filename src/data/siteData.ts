@@ -62,6 +62,21 @@ export const serviceList = [
   }
 ]
 
+export const productList = [
+  {
+    title: 'Shampoo Ristrutturante',
+    description: 'Detergente delicato arricchito con cheratina e oli naturali per rinforzare la fibra capillare fin dal primo lavaggio.',
+    image: 'https://images.unsplash.com/photo-1585232561307-3f83b0ed5778?q=80&w=1000&auto=format&fit=crop',
+    link: '#'
+  },
+  {
+    title: 'Maschera Illuminante',
+    description: 'Trattamento intensivo per donare lucentezza e morbidezza immediata ai capelli spenti, senza appesantirli.',
+    image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=1000&auto=format&fit=crop',
+    link: '#'
+  }
+]
+
 export const contactInfo = {
   address: 'Via Coletti 3, Rimini',
   mapLink: 'https://www.google.com/maps/search/?api=1&query=Via+Coletti+3,+Rimini',
