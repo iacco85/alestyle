@@ -3,6 +3,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 // Assicurati che il nome del file corrisponda a quello nella tua cartella assets
 import logo from './assets/LogoAleStyle.jpg'
 import './style.css'
+import SocialLinks from './components/SocialLinks.vue'
+import { reviews, serviceList, contactInfo } from './data/siteData'
 
 // Stato per il cursore personalizzato
 const cursorX = ref(0)
@@ -46,35 +48,6 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-// Dati Mock per le recensioni
-const reviews = [
-  { id: 1, author: 'Laura B.', text: 'Professionalità e cortesia. Il miglior taglio che abbia mai avuto!', rating: 5 },
-  { id: 2, author: 'Marco G.', text: 'Ambiente rilassante e staff preparatissimo. Consigliato.', rating: 5 },
-  { id: 3, author: 'Sofia R.', text: 'Prodotti di alta qualità e grande attenzione al cliente.', rating: 5 },
-]
-
-// Dati per i Servizi
-const serviceList = [
-  { 
-    title: 'Taglio & Styling', 
-    description: 'Esprimi la tua unicità con un taglio studiato per valorizzare i tuoi lineamenti.', 
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1000&auto=format&fit=crop',
-    link: '#' 
-  },
-  { 
-    title: 'Colorazione', 
-    description: 'Nuance vibranti e tecniche innovative per dare luce e profondità ai tuoi capelli.', 
-    image: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=1000&auto=format&fit=crop',
-    link: '#' 
-  },
-  { 
-    title: 'Trattamenti', 
-    description: 'Rituali di benessere per rigenerare la fibra capillare e rilassare la mente.', 
-    image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1000&auto=format&fit=crop',
-    link: '#' 
-  }
-]
-
 // Stato per il menu mobile
 const isMenuOpen = ref(false)
 const toggleMenu = () => {
@@ -90,20 +63,7 @@ const toggleMenu = () => {
     </div>
 
     <!-- Icone Social Header (Desktop) -->
-    <div class="header-socials">
-      <a href="https://www.facebook.com" target="_blank" class="social-link-header" aria-label="Facebook">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-      </a>
-      <a href="https://www.instagram.com" target="_blank" class="social-link-header" aria-label="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-      </a>
-      <a href="mailto:info@alestyle.it" class="social-link-header" aria-label="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-      </a>
-      <a href="https://wa.me/390123456789" target="_blank" class="social-link-header" aria-label="WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-      </a>
-    </div>
+    <SocialLinks class="header-socials" link-class="social-link-header" :icon-size="20" />
 
     <div class="menu-toggle" @click="toggleMenu" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
       <div class="hamburger" :class="{ 'open': isMenuOpen }">
@@ -114,20 +74,7 @@ const toggleMenu = () => {
     </div>
     <nav :class="{ 'open': isMenuOpen }">
       <!-- Icone Social Menu Mobile -->
-      <div class="mobile-socials">
-        <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-        </a>
-        <a href="https://www.instagram.com" target="_blank" class="social-link" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-        </a>
-        <a href="mailto:info@alestyle.it" class="social-link" aria-label="Email">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        </a>
-        <a href="https://wa.me/390123456789" target="_blank" class="social-link" aria-label="WhatsApp">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-        </a>
-      </div>
+      <SocialLinks class="mobile-socials" />
 
       <ul>
         <li><a href="#home" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Home</a></li>
@@ -161,9 +108,9 @@ const toggleMenu = () => {
 
       <div class="hero-content">
         <!-- Logo come elemento principale della Hero (al posto della foto) -->
-        <h2 class="subtitle">Parrucchiere Uomo & Donna</h2>
+        <h2 class="subtitle">Hair Stylist & Image Creator</h2>
 
-        <p class="description">Ridefiniamo l'eleganza del tuo look.</p>
+        <p class="description">La tua unicità è la mia ispirazione. Creo il look perfetto per raccontare chi sei.</p>
 
         <div class="actions">
           <button class="cta-btn" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
@@ -231,33 +178,25 @@ const toggleMenu = () => {
         <div class="info-grid">
           <div class="info-item">
             <h3>Indirizzo</h3>
-            <p>Via Roma 123, Città</p>
+            <p>
+              <a :href="contactInfo.mapLink" target="_blank" class="map-link" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="map-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                {{ contactInfo.address }}
+              </a>
+            </p>
           </div>
           <div class="info-item">
             <h3>Orari</h3>
-            <p>Mar - Sab: 09:00 - 19:00<br>Dom - Lun: Chiuso</p>
+            <p style="white-space: pre-line;">{{ contactInfo.hours }}</p>
           </div>
           <div class="info-item">
             <h3>Contatti</h3>
-            <p>Tel: 0123 456789<br>Email: info@alestyle.it</p>
+            <p>Tel: {{ contactInfo.phone }}<br>Email: {{ contactInfo.email }}</p>
           </div>
         </div>
         
         <!-- Icone Social Contatti -->
-        <div class="social-icons contact-socials" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-          <a href="https://www.facebook.com" target="_blank" class="social-link" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-          </a>
-          <a href="https://www.instagram.com" target="_blank" class="social-link" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-          </a>
-          <a href="mailto:info@alestyle.it" class="social-link" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          </a>
-          <a href="https://wa.me/390123456789" target="_blank" class="social-link" aria-label="WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-          </a>
-        </div>
+        <SocialLinks class="social-icons contact-socials" @mouseenter="isHovering = true" @mouseleave="isHovering = false" />
 
       </div>
     </section>

@@ -441,6 +441,7 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
   animation: bounce 2s 2s infinite, fadeIndicator 2s ease-out 2s forwards;
   z-index: 20;
   text-align: center;
+  color: var(--accent-color);
 }
 
 @keyframes bounce {
@@ -451,13 +452,13 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
 
 @keyframes fadeIndicator {
   from { opacity: 0; }
-  to { opacity: 0.5; }
+  to { opacity: 1; }
 }
 
 .scroll-indicator .line {
-  width: 1px;
+  width: 2px;
   height: 40px;
-  background: linear-gradient(to bottom, #fff, transparent);
+  background: linear-gradient(to bottom, var(--accent-color), transparent);
 }
 
 /* --- Common Section Styles --- */
@@ -555,6 +556,20 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
 
 .info-item h3 { color: var(--accent-color); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; }
 .info-item p { color: #ccc; line-height: 1.6; }
+
+.map-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-link:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
 
 /* --- Services Section --- */
 .services-section {
