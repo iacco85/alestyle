@@ -13,7 +13,7 @@ export interface Service {
 
 export const serviceList: Service[] = [
   { 
-    title: 'Taglio & Styling Donna', 
+    title: 'Taglio e Styling Donna',
     description: 'Tagli personalizzati, dal classico al moderno, studiati per valorizzare i lineamenti del tuo viso e la tua personalità.', 
     image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=1000&auto=format&fit=crop',
     link: '#',
@@ -24,7 +24,7 @@ export const serviceList: Service[] = [
     ]
   },
   { 
-    title: 'Barber & Uomo', 
+    title: 'Barber e Uomo',
     description: 'Tagli uomo di tendenza e regolazione barba per un look curato, maschile e sempre in ordine.', 
     image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=1000&auto=format&fit=crop',
     link: '#',
@@ -35,7 +35,7 @@ export const serviceList: Service[] = [
     ]
   },
   { 
-    title: 'Colorazione & Schiariture', 
+    title: 'Colorazione e Schiariture',
     description: 'Balayage, decolorazioni e colori moda. Nuance vibranti per dare luce e profondità alla tua chioma.', 
     image: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=1000&auto=format&fit=crop',
     link: '#',
@@ -57,7 +57,7 @@ export const serviceList: Service[] = [
     ]
   },
   { 
-    title: 'Extension & Infoltimento', 
+    title: 'Extension e Infoltimento',
     description: 'Allungamento e volume con capelli 100% naturali e cheratina vegetale per un risultato invisibile e duraturo.', 
     image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1000&auto=format&fit=crop',
     link: '#',
@@ -67,7 +67,7 @@ export const serviceList: Service[] = [
     ]
   },
   { 
-    title: 'Spose & Cerimonie', 
+    title: 'Spose e Cerimonie',
     description: 'Acconciature esclusive per il tuo giorno più bello. Disponibile anche servizio a domicilio per spose e invitate.', 
     image: 'https://images.unsplash.com/photo-1522337360705-8b13d5230394?q=80&w=1000&auto=format&fit=crop',
     link: '#',
@@ -77,7 +77,7 @@ export const serviceList: Service[] = [
     ]
   },
   { 
-    title: 'Ricostruzione & Lisciante', 
+    title: 'Ricostruzione e Lisciante',
     description: 'Trattamenti alla cheratina per riparare i capelli danneggiati o per ottenere un liscio perfetto e setoso.', 
     image: 'https://images.unsplash.com/photo-1595476103518-3c182f246e91?q=80&w=1000&auto=format&fit=crop',
     link: '#',

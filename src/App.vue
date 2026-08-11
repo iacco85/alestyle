@@ -2,13 +2,15 @@
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 // Assicurati che il nome del file corrisponda a quello nella tua cartella assets
 import logo from './assets/LogoAleStyle.jpg'
+import chiSonoImg from './assets/chi_sono.jpg'
+import framesiLogo from './assets/framesi-logo.png'
 import './style.css'
 import SocialLinks from './components/SocialLinks.vue'
 import DetailView from './components/DetailView.vue'
 import GoogleReviews from './components/GoogleReviews.vue'
 import { serviceList, type Service } from './data/services'
-import { productList, type Product } from './data/products'
-import { contactInfo } from './data/contact'
+import { type Product } from './data/products'
+import { contactInfo, socialUrls } from './data/contact'
 
 // Stato per il cursore personalizzato
 const cursorX = ref(0)
@@ -152,9 +154,9 @@ const toggleMenu = () => {
         <p class="description">Esperienza, creatività e qualità professionale per valorizzare la tua unicità.</p>
 
         <div class="actions">
-          <button class="cta-btn" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
+          <a :href="socialUrls.whatsapp" target="_blank" class="cta-btn" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
             Prenota Ora
-          </button>
+          </a>
         </div>
       </div>
       
@@ -166,33 +168,37 @@ const toggleMenu = () => {
 
     <!-- Sezione Chi sono -->
     <section v-show="!selectedItem" id="chi-sono" class="about section-padding">
-      <div class="content-wrapper">
-        <h2 class="section-title">La MIA <span class="highlight">Filosofia</span></h2>
-        
-        <h3 class="about-subtitle">Dal 2005, la bellezza dei tuoi capelli è la mia missione</h3>
-        <p class="section-text">
-          Mi chiamo Alessandra e da sempre vivo il mondo dell’hairstyling con passione autentica. Ho iniziato a soli 14 anni nei saloni di Rimini, trasformando giorno dopo giorno la mia vocazione in competenza, esperienza e visione.
-        </p>
-        <p class="section-text">
-          Nel 2005 ho dato vita a Ale’s Style: uno spazio intimo e accogliente dove ogni persona viene seguita direttamente da me, con attenzione, ascolto e cura su misura.
-        </p>
+      <div class="content-wrapper about-content">
+        <img :src="chiSonoImg" alt="Alessandra, titolare di Ale's Style" class="about-img">
 
-        <h3 class="about-subtitle">Un servizio personale, pensato per te</h3>
-        <p class="section-text">
-          Ogni trattamento nasce dall’ascolto e dallo studio della tua immagine, dei tuoi desideri e delle caratteristiche dei tuoi capelli. Credo in una bellezza che valorizza, che rispetta e che racconta chi sei davvero.
-          <br><br>
-          Nel mio lavoro unisco tecnica, creatività e aggiornamento costante per offrirti risultati naturali, armoniosi e sempre attuali.
-        </p>
+        <div class="about-text">
+          <h2 class="section-title">La MIA <span class="highlight">Filosofia</span></h2>
 
-        <h3 class="about-subtitle">Qualità senza compromessi</h3>
-        <p class="section-text">
-          Per garantire risultati eccellenti utilizzo esclusivamente prodotti professionali selezionati, come quelli firmati Framesi, marchio italiano sinonimo di innovazione, ricerca e alta performance nel mondo dell’hairstyling.
-        </p>
+          <h3 class="about-subtitle">Dal 2005, la bellezza dei tuoi capelli è la mia missione</h3>
+          <p class="section-text">
+            Mi chiamo Alessandra e da sempre vivo il mondo dell’hairstyling con passione autentica. Ho iniziato a soli 14 anni nei saloni di Rimini, trasformando giorno dopo giorno la mia vocazione in competenza, esperienza e visione.
+          </p>
+          <p class="section-text">
+            Nel 2005 ho dato vita a Ale’s Style: uno spazio intimo e accogliente dove ogni persona viene seguita direttamente da me, con attenzione, ascolto e cura su misura.
+          </p>
 
-        <h3 class="about-subtitle">Più di un cambio look: un’esperienza</h3>
-        <p class="section-text">
-          Ale’s Style non è solo un salone, ma uno spazio dove concederti tempo, cura e attenzione autentica. Qui ogni dettaglio è pensato per farti sentire a tuo agio e per esaltare al meglio la tua unicità.
-        </p>
+          <h3 class="about-subtitle">Un servizio personale, pensato per te</h3>
+          <p class="section-text">
+            Ogni trattamento nasce dall’ascolto e dallo studio della tua immagine, dei tuoi desideri e delle caratteristiche dei tuoi capelli. Credo in una bellezza che valorizza, che rispetta e che racconta chi sei davvero.
+            <br><br>
+            Nel mio lavoro unisco tecnica, creatività e aggiornamento costante per offrirti risultati naturali, armoniosi e sempre attuali.
+          </p>
+
+          <h3 class="about-subtitle">Qualità senza compromessi</h3>
+          <p class="section-text">
+            Per garantire risultati eccellenti utilizzo esclusivamente prodotti professionali selezionati, come quelli firmati Framesi, marchio italiano sinonimo di innovazione, ricerca e alta performance nel mondo dell’hairstyling.
+          </p>
+
+          <h3 class="about-subtitle">Più di un cambio look: un’esperienza</h3>
+          <p class="section-text">
+            Ale’s Style non è solo un salone, ma uno spazio dove concederti tempo, cura e attenzione autentica. Qui ogni dettaglio è pensato per farti sentire a tuo agio e per esaltare al meglio la tua unicità.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -207,27 +213,17 @@ const toggleMenu = () => {
           <div class="service-content">
             <h3>{{ service.title }}</h3>
             <p>{{ service.description }}</p>
-            <button @click="openDetail(service, 'servizi', 'Torna ai servizi')" class="service-link-btn">Scopri di più</button>
+            <button v-if="service.title === 'Spose e Cerimonie'" @click="openDetail(service, 'servizi', 'Torna ai servizi')" class="service-link-btn">Scopri di più</button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Sezione Prodotti -->
-    <section v-show="!selectedItem" id="prodotti" class="services-section section-padding">
+    <section v-show="!selectedItem" id="prodotti" class="brand-section section-padding">
       <h2 class="section-title center">I Nostri <span class="highlight">Prodotti</span></h2>
-      <div class="services-grid">
-        <div class="service-card" v-for="product in productList" :key="product.title" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-          <div class="service-image-wrapper">
-            <img :src="product.image" :alt="product.title" class="service-img">
-          </div>
-          <div class="service-content">
-            <h3>{{ product.title }}</h3>
-            <p>{{ product.description }}</p>
-            <button @click="openDetail(product, 'prodotti', 'Torna ai prodotti')" class="service-link-btn">Scopri di più</button>
-          </div>
-        </div>
-      </div>
+      <p class="brand-statement">Utilizziamo <span class="highlight">solo prodotti di altissima qualità</span>, perché i tuoi capelli meritano il meglio.</p>
+      <img :src="framesiLogo" alt="Framesi" class="brand-logo">
     </section>
 
     <!-- Sezione Dicono di Noi -->
