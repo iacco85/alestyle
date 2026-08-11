@@ -168,12 +168,11 @@ const toggleMenu = () => {
 
     <!-- Sezione Chi sono -->
     <section v-show="!selectedItem" id="chi-sono" class="about section-padding">
+      <h2 class="section-title center">La MIA <span class="highlight">Filosofia</span></h2>
       <div class="content-wrapper about-content">
         <img :src="chiSonoImg" alt="Alessandra, titolare di Ale's Style" class="about-img">
 
         <div class="about-text">
-          <h2 class="section-title">La MIA <span class="highlight">Filosofia</span></h2>
-
           <h3 class="about-subtitle">Dal 2005, la bellezza dei tuoi capelli è la mia missione</h3>
           <p class="section-text">
             Mi chiamo Alessandra e da sempre vivo il mondo dell’hairstyling con passione autentica. Ho iniziato a soli 14 anni nei saloni di Rimini, trasformando giorno dopo giorno la mia vocazione in competenza, esperienza e visione.

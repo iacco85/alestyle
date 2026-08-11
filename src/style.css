@@ -273,14 +273,22 @@ nav a:hover {
     grid-template-columns: 1fr !important; /* Una colonna su mobile */
   }
 
+  .about .section-title {
+    margin-bottom: 2.5rem !important;
+  }
+
   .about-content {
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.5rem;
   }
 
   .about-img {
     width: 100%;
     max-width: 100%;
+  }
+
+  .about-text .about-subtitle:first-child {
+    margin-top: 0;
   }
 
   .card {
