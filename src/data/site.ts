@@ -5,8 +5,7 @@
 // - 'maintenance' "sito in aggiornamento" (interventi dopo il lancio)
 export const SITE_STATUS: 'online' | 'coming-soon' | 'maintenance' = 'online'
 
-// TODO: sostituire con il dominio reale prima del deploy in produzione.
-export const SITE_URL = 'https://www.ale-style.it'
+export const SITE_URL = 'https://www.alestyle.it'
 
 export const SITE_NAME = "Ale's Style"
 

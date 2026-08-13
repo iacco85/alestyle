@@ -2,13 +2,13 @@
 <!-- Aggiornare manualmente se un servizio in src/data/services.ts guadagna una gallery fotografica propria (vedi HomeView.vue) e quindi una pagina /servizi/<slug> dedicata. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.ale-style.it/</loc>
+    <loc>https://www.alestyle.it/</loc>
     <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.ale-style.it/servizi/spose-e-cerimonie</loc>
+    <loc>https://www.alestyle.it/servizi/spose-e-cerimonie</loc>
     <lastmod>2026-08-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>

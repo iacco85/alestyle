@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.ale-style.it/sitemap.xml
+Sitemap: https://www.alestyle.it/sitemap.xml
