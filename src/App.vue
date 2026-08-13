@@ -143,7 +143,7 @@ const toggleMenu = () => {
     <!-- Sezione Hero -->
     <section v-show="!selectedItem" class="hero" id="home">
       <div class="hero-bg" :style="{ transform: `translateY(${scrollY * 0.5}px)` }">
-        <img src="./assets/home_negozio.webp" alt="Ale Style Mood Uomo Donna" />
+        <img src="./assets/home_negozio.png" alt="Ale Style Mood Uomo Donna" />
         <div class="overlay"></div>
       </div>
 
