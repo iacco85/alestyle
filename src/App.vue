@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useHead } from '@unhead/vue'
 // Assicurati che il nome del file corrisponda a quello nella tua cartella assets
 import logo from './assets/LogoAleStyle.jpg'
 import './style.css'
@@ -8,6 +9,8 @@ import MaintenanceView from './views/MaintenanceView.vue'
 import ComingSoonView from './views/ComingSoonView.vue'
 import { contactInfo } from './data/contact'
 import { SITE_NAME, SITE_STATUS } from './data/site'
+
+useHead({ htmlAttrs: { lang: 'it' } })
 
 // Stato per il cursore personalizzato
 const cursorX = ref(0)
