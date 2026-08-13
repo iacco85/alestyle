@@ -62,7 +62,7 @@ const toggleMenu = () => {
       <a href="/"><img :src="logo" alt="ALE STYLE" class="header-logo" /></a>
     </div>
 
-    <!-- Icone Social Header (Desktop) -->
+    <!-- Icone Social Header (sempre visibili, desktop e mobile) -->
     <SocialLinks class="header-socials" link-class="social-link-header" :icon-size="20" />
 
     <div class="menu-toggle" @click="toggleMenu" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
@@ -73,9 +73,6 @@ const toggleMenu = () => {
       </div>
     </div>
     <nav :class="{ 'open': isMenuOpen }">
-      <!-- Icone Social Menu Mobile -->
-      <SocialLinks class="mobile-socials" />
-
       <ul>
         <li><a href="/#home" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Home</a></li>
         <li><a href="/#chi-sono" @click="isMenuOpen = false" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Chi sono</a></li>

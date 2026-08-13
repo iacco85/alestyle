@@ -105,10 +105,6 @@ body {
   gap: 15px;
 }
 
-.mobile-socials {
-  display: none;
-}
-
 .social-link-header {
   color: #fff;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -162,13 +158,9 @@ nav a:hover {
   }
 
   .header-socials {
-    display: none; /* Nascondi social header su mobile */
-  }
-
-  .mobile-socials {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 40px;
+    position: static; /* Sempre visibili in testata, non più nascoste dentro il menu */
+    transform: none;
+    gap: 12px;
   }
 
   .site-header {

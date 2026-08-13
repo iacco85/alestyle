@@ -3,7 +3,7 @@
 // - 'online'      sito vero e proprio (normale)
 // - 'coming-soon' "il nuovo sito sta arrivando" (prima del lancio ufficiale)
 // - 'maintenance' "sito in aggiornamento" (interventi dopo il lancio)
-export const SITE_STATUS: 'online' | 'coming-soon' | 'maintenance' = 'coming-soon'
+export const SITE_STATUS: 'online' | 'coming-soon' | 'maintenance' = 'online'
 
 export const SITE_URL = 'https://www.alestyle.it'
 
