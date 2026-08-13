@@ -851,3 +851,66 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+.site-footer {
+  padding: 25px 20px;
+  text-align: center;
+  background-color: #000000;
+  border-top: 1px solid #222;
+}
+
+.site-footer p {
+  color: #777;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* --- Pagine di stato (manutenzione / coming soon) --- */
+.status-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.status-logo {
+  height: 100px;
+  margin-bottom: 30px;
+}
+
+.status-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.status-text {
+  max-width: 500px;
+  color: #ccc;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.status-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-contacts p {
+  color: #999;
+}
+
+.status-socials {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}

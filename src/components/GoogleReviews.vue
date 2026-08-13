@@ -83,7 +83,7 @@ onMounted(async () => {
         <div class="card-header">
           <div class="author-info">
             <!-- Mostra foto profilo se esiste (da Google), altrimenti iniziale -->
-            <img v-if="review.profilePhoto" :src="review.profilePhoto" alt="User" class="profile-pic-img" />
+            <img v-if="review.profilePhoto" :src="review.profilePhoto" :alt="review.author" class="profile-pic-img" loading="lazy" />
             <div v-else class="profile-pic" :style="{ backgroundColor: 'var(--accent-color)' }">
               {{ review.author.charAt(0) }}
             </div>

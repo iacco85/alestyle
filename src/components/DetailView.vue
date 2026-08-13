@@ -30,7 +30,7 @@ const emit = defineEmits<{
     
     <div class="gallery-grid">
       <div v-for="(item, index) in gallery" :key="index" class="gallery-item">
-        <img :src="item.image" :alt="`${title} ${index + 1}`" class="gallery-img">
+        <img :src="item.image" :alt="`${title} ${index + 1}`" class="gallery-img" loading="lazy">
         <div class="gallery-desc">{{ item.description }}</div>
       </div>
     </div>

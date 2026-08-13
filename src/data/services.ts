@@ -16,6 +16,7 @@ export interface GalleryItem {
 
 export interface Service {
   title: string;
+  slug: string;
   description: string;
   image: string;      // Immagine principale della card (es. '/images/taglio.jpg')
   link: string;       // Link opzionale (può rimanere '#')
@@ -25,6 +26,7 @@ export interface Service {
 export const serviceList: Service[] = [
   {
     title: 'Taglio e Styling Donna',
+    slug: 'taglio-e-styling-donna',
     description: 'Tagli personalizzati, dal classico al moderno, studiati per valorizzare i lineamenti del tuo viso e la tua personalità.',
     image: taglioDonnaMain,
     link: '#',
@@ -32,6 +34,7 @@ export const serviceList: Service[] = [
   },
   {
     title: 'Barber e Uomo',
+    slug: 'barber-e-uomo',
     description: 'Tagli uomo di tendenza e regolazione barba per un look curato, maschile e sempre in ordine.',
     image: barberUomoMain,
     link: '#',
@@ -39,6 +42,7 @@ export const serviceList: Service[] = [
   },
   {
     title: 'Colorazione e Schiariture',
+    slug: 'colorazione-e-schiariture',
     description: 'Balayage, decolorazioni e colori moda. Nuance vibranti per dare luce e profondità alla tua chioma.',
     image: colorazioneMain,
     link: '#',
@@ -46,6 +50,7 @@ export const serviceList: Service[] = [
   },
   {
     title: 'Trattamenti Curativi',
+    slug: 'trattamenti-curativi',
     description: 'Soluzioni specifiche per caduta, forfora e cute grassa con cellule staminali vegetali e prodotti naturali.',
     image: trattamentiMain,
     link: '#',
@@ -53,6 +58,7 @@ export const serviceList: Service[] = [
   },
   {
     title: 'Extension e Infoltimento',
+    slug: 'extension-e-infoltimento',
     description: 'Allungamento e volume con capelli 100% naturali e cheratina vegetale per un risultato invisibile e duraturo.',
     image: extensionMain,
     link: '#',
@@ -60,6 +66,7 @@ export const serviceList: Service[] = [
   },
   {
     title: 'Spose e Cerimonie',
+    slug: 'spose-e-cerimonie',
     description: 'Acconciature esclusive per il tuo giorno più bello. Disponibile anche servizio a domicilio per spose e invitate.',
     image: sposeMain,
     link: '#',
@@ -70,6 +77,7 @@ export const serviceList: Service[] = [
   },
   {
     title: 'Ricostruzione e Lisciante',
+    slug: 'ricostruzione-e-lisciante',
     description: 'Trattamenti alla cheratina per riparare i capelli danneggiati o per ottenere un liscio perfetto e setoso.',
     image: ricostruzioneMain,
     link: '#',
@@ -77,6 +85,7 @@ export const serviceList: Service[] = [
   },
   {
     title: 'Speciale Bimbi',
+    slug: 'speciale-bimbi',
     description: 'Cura delicata per i più piccoli, inclusi trattamenti naturali e atossici per la prevenzione e cura.',
     image: bimbiMain,
     link: '#',
