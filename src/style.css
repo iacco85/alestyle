@@ -143,18 +143,25 @@ nav a:hover {
   color: var(--accent-color);
 }
 
-/* Mobile Menu Styles */
-@media (max-width: 768px) {
-  html {
-    scroll-padding-top: 90px; /* Compensazione header fisso mobile */
-  }
-
+/* Cursore personalizzato: disattivato su qualsiasi dispositivo touch (telefoni
+   e tablet, es. iPad), indipendentemente dalla larghezza dello schermo —
+   senza mouse reale il cursore custom resta bloccato in alto a sinistra. */
+@media (hover: none), (pointer: coarse) {
   body {
-    cursor: auto; /* Ripristina cursore di sistema su mobile */
+    cursor: auto;
   }
 
   .cursor, .cursor-follower {
-    display: none; /* Nascondi cursore personalizzato su mobile */
+    display: none;
+  }
+}
+
+/* Header/Menu di navigazione: layout "mobile" (hamburger + icone social in
+   testata) esteso anche ai tablet (es. iPad in verticale), non solo agli
+   smartphone, per evitare che le icone social si sovrappongano al menu. */
+@media (max-width: 1024px) {
+  html {
+    scroll-padding-top: 90px; /* Compensazione header fisso mobile */
   }
 
   .header-socials {
@@ -216,12 +223,29 @@ nav a:hover {
   nav a {
     font-size: 1.5rem;
   }
-  
+
   /* Hamburger Animation */
   .hamburger.open span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
 
+  .header-logo {
+    height: 60px; /* Logo un po' più piccolo ma sempre visibile */
+  }
+
+  .hero {
+    padding-top: 80px !important;
+    height: auto !important; /* Permette alla hero di crescere */
+    min-height: 100vh; /* Assicura che copra almeno lo schermo */
+  }
+
+  .service-detail-page {
+    padding-top: 110px !important; /* Evita che l'header copra il contenuto */
+  }
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 768px) {
   /* Typography & Layout Adjustments for Mobile */
   .section-title {
     font-size: 2rem !important; /* Titoli più piccoli */
@@ -240,10 +264,6 @@ nav a:hover {
 
   .hero-logo {
     max-width: 85vw !important; /* Logo adattato */
-  }
-  
-  .header-logo {
-    height: 60px; /* Logo un po' più piccolo su mobile ma sempre visibile */
   }
 
   .hero-image-card {
@@ -287,16 +307,6 @@ nav a:hover {
     width: 100% !important; /* Card a tutta larghezza */
     height: auto !important;
     min-height: 350px;
-  }
-  
-  .hero {
-    padding-top: 80px !important;
-    height: auto !important; /* Permette alla hero di crescere */
-    min-height: 100vh; /* Assicura che copra almeno lo schermo */
-  }
-
-  .service-detail-page {
-    padding-top: 110px !important; /* Evita che l'header copra il contenuto su mobile */
   }
 }
 
