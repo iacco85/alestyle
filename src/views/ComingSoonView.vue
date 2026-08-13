@@ -22,8 +22,8 @@ useHead({
     <img :src="logo" alt="ALE STYLE" class="status-logo" />
     <h1 class="status-title">Il nuovo sito sta arrivando</h1>
     <p class="status-text">
-      Stiamo lavorando al nuovo sito di {{ SITE_NAME }}.<br>
-      Nel frattempo puoi contattarci direttamente per appuntamenti e informazioni.
+      Sto lavorando al nuovo sito di {{ SITE_NAME }}.<br>
+      Nel frattempo puoi contattarmi direttamente per appuntamenti e informazioni.
     </p>
 
     <div class="status-contacts">

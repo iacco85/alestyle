@@ -173,7 +173,7 @@ onUnmounted(() => {
   <!-- Sezione Prodotti -->
   <section id="prodotti" class="brand-section section-padding">
     <h2 class="section-title center">I Miei <span class="highlight">Prodotti</span></h2>
-    <p class="brand-statement">Utilizziamo <span class="highlight">solo prodotti di altissima qualità</span>, perché i tuoi capelli meritano il meglio.</p>
+    <p class="brand-statement">Utilizzo <span class="highlight">solo prodotti di altissima qualità</span>, perché i tuoi capelli meritano il meglio.</p>
     <img :src="framesiLogo" alt="Framesi" class="brand-logo" loading="lazy">
   </section>
 

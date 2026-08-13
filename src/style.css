@@ -245,28 +245,25 @@ nav a:hover {
 }
 
 /* Header su tablet in orizzontale (es. iPad in landscape): a quella larghezza
-   c'è spazio per il menu completo (niente hamburger), ma non per logo + icone
-   social + menu tutti sulla stessa riga senza sovrapposizioni. Il menu va su
-   una seconda riga, sotto logo e icone. Il target è "pointer: coarse" (touch)
-   e non solo la larghezza, per non toccare i laptop che condividono le stesse
-   risoluzioni (es. 1366px). */
+   c'è spazio per logo + menu completo sulla stessa riga (niente hamburger),
+   con le icone social su una seconda riga sotto. Il target è "pointer: coarse"
+   (touch) e non solo la larghezza, per non toccare i laptop che condividono
+   le stesse risoluzioni (es. 1366px). */
 @media (pointer: coarse) and (min-width: 1025px) {
   .site-header {
     flex-wrap: wrap;
     row-gap: 12px;
   }
 
-  .header-socials {
-    position: static;
-    transform: none;
-  }
-
   nav {
-    width: 100%;
     flex-shrink: 0;
   }
 
-  nav ul {
+  .header-socials {
+    position: static;
+    transform: none;
+    order: 1; /* dopo logo e menu, va a capo sulla riga sotto */
+    width: 100%;
     justify-content: center;
   }
 }

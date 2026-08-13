@@ -19,10 +19,10 @@ useHead({
 <template>
   <div class="status-page">
     <img :src="logo" alt="ALE STYLE" class="status-logo" />
-    <h1 class="status-title">Stiamo aggiornando il sito</h1>
+    <h1 class="status-title">Sto aggiornando il sito</h1>
     <p class="status-text">
-      Torniamo online a brevissimo.<br>
-      Per appuntamenti e informazioni puoi contattarci direttamente.
+      Torno online a brevissimo.<br>
+      Per appuntamenti e informazioni puoi contattarmi direttamente.
     </p>
 
     <div class="status-contacts">
