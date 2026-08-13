@@ -165,8 +165,9 @@ nav a:hover {
   }
 
   .header-socials {
-    position: static; /* Sempre visibili in testata, non più nascoste dentro il menu */
-    transform: none;
+    /* Sempre visibili in testata (non più dentro il menu), centrate in modo
+       assoluto: con position:static e "space-between" risultavano spostate,
+       perché logo e hamburger hanno larghezze diverse. */
     gap: 12px;
   }
 
@@ -813,6 +814,10 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
   max-width: 1200px;
   margin: 0 auto 2rem auto;
   padding: 0 20px;
+}
+
+.detail-footer {
+  margin: 2.5rem auto 0 auto;
 }
 
 .back-btn {
