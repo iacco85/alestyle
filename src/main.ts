@@ -7,7 +7,13 @@ export const createApp = ViteSSG(App, {
   routes,
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) return savedPosition
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+    if (to.hash) {
+      // vue-router ignora lo scroll-padding-top CSS: bisogna passare l'offset
+      // esplicitamente, misurando l'header fisso (altezza diversa tra desktop e mobile)
+      const header = document.querySelector('.site-header')
+      const offset = header ? header.getBoundingClientRect().height : 0
+      return { el: to.hash, top: offset, behavior: 'smooth' }
+    }
     return { top: 0 }
   }
 })
