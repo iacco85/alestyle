@@ -184,6 +184,8 @@ nav a:hover {
   .header-socials {
     /* Sempre visibili in testata (non più dentro il menu) */
     position: static;
+    left: auto;
+    transform: none; /* annulla il translateX(-50%) del posizionamento assoluto desktop */
     justify-self: center;
     gap: 12px;
   }
@@ -255,8 +257,8 @@ nav a:hover {
     min-height: 100vh; /* Assicura che copra almeno lo schermo */
   }
 
-  .service-detail-page {
-    padding-top: 110px !important; /* Evita che l'header copra il contenuto */
+  .service-detail-page.section-padding {
+    padding-top: 110px !important; /* Evita che l'header copra il contenuto (più specifico della regola .section-padding sotto, che altrimenti vince per ordine) */
   }
 }
 
@@ -819,6 +821,7 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
 .service-detail-page {
   padding-top: 120px; /* Spazio per l'header */
   min-height: 100vh;
+  justify-content: flex-start; /* Il contenuto parte dall'alto invece di centrarsi nei 100vh (con poco contenuto il pulsante "torna ai servizi" finiva al centro dello schermo) */
   background-color: var(--bg-color);
   animation: fadeIn 0.5s ease-out;
   opacity: 1;
