@@ -13,4 +13,4 @@ export const DEFAULT_TITLE = "Tagli di tendenza | Rimini, RN | Parrucchiera Ale'
 
 export const DEFAULT_DESCRIPTION = "Ale's Style, parrucchiera a Rimini dal 2005. Taglio, colore, trattamenti, extension e acconciature sposa in Via Coletti 3. Prenota il tuo appuntamento."
 
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/social/alestyle-nuovo-sito-facebook-1200x630.png`
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/social/alestyle-sito-online-facebook-1200x630.jpg`
