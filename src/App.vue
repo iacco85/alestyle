@@ -7,7 +7,7 @@ import './style.css'
 import SocialLinks from './components/SocialLinks.vue'
 import MaintenanceView from './views/MaintenanceView.vue'
 import ComingSoonView from './views/ComingSoonView.vue'
-import { contactInfo } from './data/contact'
+import { businessInfo, contactInfo } from './data/contact'
 import { SITE_NAME, SITE_STATUS } from './data/site'
 
 useHead({ htmlAttrs: { lang: 'it' } })
@@ -92,6 +92,11 @@ const toggleMenu = () => {
 
   <footer class="site-footer">
     <p>&copy; {{ new Date().getFullYear() }} {{ SITE_NAME }} &ndash; Parrucchiera a Rimini, {{ contactInfo.address }}</p>
+    <p>
+      {{ businessInfo.owner }} &ndash; P.IVA {{ businessInfo.vatNumber }}
+      &middot;
+      <a href="/privacy" @mouseenter="isHovering = true" @mouseleave="isHovering = false">Privacy e cookie</a>
+    </p>
   </footer>
   </template>
 </template>

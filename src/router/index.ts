@@ -11,5 +11,10 @@ export const routes: RouteRecordRaw[] = [
     name: 'service-detail',
     component: () => import('../views/ServiceDetailView.vue'),
     props: true
+  },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: () => import('../views/PrivacyView.vue')
   }
 ]

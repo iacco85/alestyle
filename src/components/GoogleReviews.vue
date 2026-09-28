@@ -4,6 +4,10 @@ import { reviews as mockReviews } from '../data/reviews'
 import type { Review } from '../data/reviews'
 
 // --- CONFIGURAZIONE GOOGLE ---
+// ATTENZIONE PRIVACY: attivando la chiave, il browser di ogni visitatore carica
+// lo script di Google Maps (terza parte) e il sito avrebbe bisogno del banner di
+// consenso cookie + aggiornamento di /privacy. Alternativa consigliata: scaricare
+// le recensioni in fase di build e servirle come dati statici.
 // 1. Ottieni API Key: https://console.cloud.google.com/ (Abilita "Maps JavaScript API" e "Places API")
 // 2. Trova Place ID: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
 const GOOGLE_API_KEY = 'INSERISCI_QUI_LA_TUA_API_KEY'; 

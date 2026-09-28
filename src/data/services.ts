@@ -3,9 +3,10 @@ import barberUomoMain from '../assets/services/barber-uomo-main.jpg'
 import colorazioneMain from '../assets/services/colorazione-main.jpg'
 import trattamentiMain from '../assets/services/trattamenti-main.jpg'
 import extensionMain from '../assets/services/extension-main.jpg'
-import sposeMain from '../assets/services/spose-main.jpg'
-import stylingMosso from '../assets/services/styling-mosso.jpg'
-import acconciaturaIntrecciata from '../assets/services/acconciatura-intrecciata.jpg'
+import sposeMain from '../assets/services/spose/spose-main.jpg'
+import spose1 from '../assets/services/spose/spose1.jpg'
+import spose2 from '../assets/services/spose/spose2.jpg'
+import spose3 from '../assets/services/spose/spose3.jpg'
 import ricostruzioneMain from '../assets/services/ricostruzione-main.jpg'
 import bimbiMain from '../assets/services/servizio_bimbi.jpg'
 
@@ -33,9 +34,9 @@ export const serviceList: Service[] = [
     gallery: []
   },
   {
-    title: 'Barber e Uomo',
+    title: 'Uomo',
     slug: 'barber-e-uomo',
-    description: 'Tagli uomo di tendenza e regolazione barba per un look curato, maschile e sempre in ordine.',
+    description: 'Tagli uomo di tendenza per un look curato, maschile e sempre in ordine.',
     image: barberUomoMain,
     link: '#',
     gallery: []
@@ -71,8 +72,9 @@ export const serviceList: Service[] = [
     image: sposeMain,
     link: '#',
     gallery: [
-      { image: stylingMosso, description: 'Raccolto morbido ed elegante per sposa.' },
-      { image: acconciaturaIntrecciata, description: 'Acconciatura intrecciata per cerimonia.' }
+      { image: spose1, description: 'Semiraccolto con onde morbide per la sposa.' },
+      { image: spose2, description: 'Gli ultimi ritocchi prima del sì.' },
+      { image: spose3, description: 'Acconciatura intrecciata con fiori per le piccole invitate.' }
     ]
   },
   {

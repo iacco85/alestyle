@@ -23,7 +23,7 @@ const config: UserConfig & { ssgOptions?: Partial<ViteSSGOptions> } = {
   ],
   ssgOptions: {
     includedRoutes() {
-      return ['/', ...serviceSlugs.map((slug) => `/servizi/${slug}`)]
+      return ['/', '/privacy', ...serviceSlugs.map((slug) => `/servizi/${slug}`)]
     }
   }
 }
