@@ -72,6 +72,12 @@ useHead({
       (art. 122 del Codice Privacy e Linee guida del Garante del 10 giugno 2021), per questo il sito
       non mostra alcun banner. Puoi comunque bloccarli o cancellarli dalle impostazioni del tuo browser.
     </p>
+    <p>
+      Quando chiudi il riquadro con le promozioni, il sito salva nella memoria del tuo browser
+      (localStorage) solo l'informazione che l'hai già chiuso, per non riaprirtelo automaticamente. Il dato
+      resta sul tuo dispositivo, non viene inviato a noi né a terzi e puoi cancellarlo dalle
+      impostazioni del browser.
+    </p>
 
     <h2>A chi vengono comunicati i dati</h2>
     <p>

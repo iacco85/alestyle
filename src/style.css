@@ -94,13 +94,21 @@ body {
   display: block;
 }
 
-/* Header Socials */
+/* Header Socials: su desktop subito dopo il logo, separate da una linea; il
+   menu resta a destra. (Centrate in assoluto si sovrapponevano al menu, largo
+   ~700px, su tutti gli schermi sotto i ~1620px.) Sotto i 1250px non stanno
+   sulla stessa riga: vedi la media query "seconda riga" più sotto. */
 .header-socials {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
+  align-items: center;
   gap: 15px;
+  margin-left: 32px;
+  padding-left: 32px;
+  border-left: 1px solid #333;
+}
+
+.site-header nav {
+  margin-left: auto; /* menu allineato a destra */
 }
 
 .social-link-header {
@@ -180,10 +188,11 @@ nav a:hover {
   }
 
   .header-socials {
-    /* Sempre visibili in testata (non più dentro il menu) */
-    position: static;
-    left: auto;
-    transform: none; /* annulla il translateX(-50%) del posizionamento assoluto desktop */
+    /* Sempre visibili in testata (non più dentro il menu), al centro */
+    order: 0; /* ordine del DOM: logo, icone, hamburger */
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
     justify-self: center;
     gap: 12px;
   }
@@ -269,8 +278,10 @@ nav a:hover {
    c'è spazio per logo + menu completo sulla stessa riga (niente hamburger),
    con le icone social su una seconda riga sotto. Il target è "pointer: coarse"
    (touch) e non solo la larghezza, per non toccare i laptop che condividono
-   le stesse risoluzioni (es. 1366px). */
-@media (pointer: coarse) and (min-width: 1025px) {
+   le stesse risoluzioni (es. 1366px).
+   Stessa disposizione anche per i desktop stretti (1025-1249px), dove logo +
+   menu + icone non stanno su una riga sola. */
+@media (pointer: coarse) and (min-width: 1025px), (min-width: 1025px) and (max-width: 1249px) {
   .site-header {
     flex-wrap: wrap;
     row-gap: 12px;
@@ -281,11 +292,12 @@ nav a:hover {
   }
 
   .header-socials {
-    position: static;
-    transform: none;
     order: 1; /* dopo logo e menu, va a capo sulla riga sotto */
     width: 100%;
     justify-content: center;
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
   }
 }
 
@@ -929,6 +941,122 @@ position: absolute; /* Torniamo ad absolute per fissarlo in basso */
 
 .site-footer a:hover {
   color: var(--accent-color);
+}
+
+/* --- Popup promozione (PromoPopup.vue) --- */
+/* z-index sotto al cursore personalizzato (9998/9999), sopra all'header */
+.promo-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.promo-popup {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 28px 28px;
+  text-align: center;
+  background: #0b0b0b;
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.promo-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #999;
+  background: none;
+  border: none;
+  cursor: none;
+}
+
+.promo-close:hover {
+  color: var(--accent-color);
+}
+
+.promo-badge {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 4px 14px;
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #000;
+  background: var(--accent-gradient);
+}
+
+.promo-title {
+  margin: 0 0 12px;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+
+.promo-text {
+  margin: 0 0 24px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.promo-cta {
+  padding: 0.9rem 2rem;
+}
+
+.promo-conditions {
+  margin: 20px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #777;
+}
+
+/* Linguetta che riapre il popup dopo che è stato chiuso */
+.promo-tab {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 8000;
+  padding: 10px 16px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  background: var(--accent-gradient);
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  cursor: none;
+  transition: transform 0.3s ease;
+}
+
+.promo-tab:hover {
+  transform: scale(1.08);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .promo-tab, .promo-close {
+    cursor: pointer;
+  }
+}
+
+.promo-enter-active,
+.promo-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.promo-enter-from,
+.promo-leave-to {
+  opacity: 0;
 }
 
 /* --- Pagine legali (privacy) --- */

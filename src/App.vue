@@ -5,6 +5,7 @@ import { useHead } from '@unhead/vue'
 import logo from './assets/LogoAleStyle.jpg'
 import './style.css'
 import SocialLinks from './components/SocialLinks.vue'
+import PromoPopup from './components/PromoPopup.vue'
 import MaintenanceView from './views/MaintenanceView.vue'
 import ComingSoonView from './views/ComingSoonView.vue'
 import { businessInfo, contactInfo } from './data/contact'
@@ -89,6 +90,8 @@ const toggleMenu = () => {
       <component :is="Component" @hover="(val: boolean) => isHovering = val" />
     </router-view>
   </main>
+
+  <PromoPopup v-if="$route.path !== '/privacy'" @hover="(val: boolean) => isHovering = val" />
 
   <footer class="site-footer">
     <p>&copy; {{ new Date().getFullYear() }} {{ SITE_NAME }} &ndash; Parrucchiera a Rimini, {{ contactInfo.address }}</p>
